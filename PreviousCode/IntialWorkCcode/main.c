@@ -1,12 +1,15 @@
-
-
 /****************************************************************************
-*
-*   Copyright (c) 2012 Xiaorong Zhang
-*
-*
-****************************************************************************/
-
+ *
+ *   Author: Milton Tinoco
+ *   Last Updated: 12/30/2024
+ *
+ *   Description:
+ *   This code is part of the project "EMG-based Hand Gesture Recognition."
+ *   It is used to train and test the LDA classifier for hand gesture recognition.
+ *   This version includes edits and updates based on the original implementation
+ *   by Xiaorong Zhang.
+ *
+ ****************************************************************************/
 
 
 /* ---- Include Files ---------------------------------------------------- */
@@ -56,11 +59,8 @@ int main( int argc, char **argv )
 	xmean=(float*)malloc(1*FEATURE_DIM*sizeof(float));
 	xstd=(float*)malloc(1*FEATURE_DIM*sizeof(float));
 
-
-
-	printf("********************************************************\n");
-	printf("*******      Training Session Starts      **************\n");
-	printf("********************************************************\n\n");
+	// Print the stage of the program
+	printf("Loading training data...\n");
 
 	//class 1, trial 1
 	TraindataFile=fopen("data\\train\\NoMovement1.txt","r");
@@ -73,7 +73,9 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++; 
 	}
-	printf("fscanf complete!\n");
+
+	printf("Load file: data\\train\\NoMovement1.txt\n");
+	
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -98,7 +100,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("Load file: data\\train\\NoMovement3.txt\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -123,7 +125,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("Load file: data\\train\\NoMovement5.txt\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -150,7 +152,7 @@ int main( int argc, char **argv )
 
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("Load file: data\\train\\HandClose1.txt\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -175,7 +177,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\train\\HandClose3.txt\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -200,7 +202,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\train\\HandClose5.txt\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -215,7 +217,6 @@ int main( int argc, char **argv )
 	}
 
 	class_idx++; //class 3
-	//class 3, trial 1
 	TraindataFile=fopen("data\\train\\HandOpen1.txt","r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class3 trial 1 ... \n");
@@ -223,12 +224,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\train\\HandOpen1.txt\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -250,12 +249,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\train\\HandOpen3.txt\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -277,16 +274,16 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\train\\HandOpen5.txt\n");
+	// Loading training data is done
+	// Print the stage of the program
+	printf("Training data loaded!\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
-
     m=0;
 	while(m<WIN_PER_TRIAL)
 	{
@@ -295,7 +292,6 @@ int main( int argc, char **argv )
 		feature_matrix_idx++;
 		m++;
 	}
-    printf("feature_matrix_idx=%d,m=%d\n", feature_matrix_idx, m);
 
 	j=0;
 
@@ -311,22 +307,8 @@ int main( int argc, char **argv )
 	feature_normalization(Feature_matrix, xmean, xstd,feature_matrix_idx);
 	printf("Feature normalization complete!!!\n\n");
 	LDA_train(Feature_matrix,TrainClass, Wg, Cg);
-	printf("training complete!!!\n\n");
+	printf("training complete stage finished\n\n");
 
-
-	for(j=0;j<FEATURE_DIM;j++)
-    {
-        printf("\nxmean[%d]:%.4g\t,xstd:%.4g",j,xmean[j],xstd[j]);
-    }
-	for(i=0;i<CLASS;i++){
-		printf("\nWg[%d]=\n",i);
-		for(j=0;j<FEATURE_DIM;j++)
-        {
-            printf("%.4g\t",Wg[i+j*CLASS]);
-        }
-        printf("\nCg[%d]=%.4g\t",i,Cg[i]);
-		printf("\n");
-	}
 
 
 	accuracy=LDA_train_accuracy(Feature_matrix,TrainClass, Wg, Cg);
@@ -364,6 +346,9 @@ int main( int argc, char **argv )
 	//////////////////////   testing phase///////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
+	// Print the stage of the program
+	printf("Loading testing data...\n");
+
     //class 1, trial 1
 	TestdataFile=fopen("data\\test\\NoMovement2.txt","r");
 	if (TestdataFile == NULL) {
@@ -372,12 +357,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\NoMovement2.txt\n");
 	fclose(TestdataFile);
 
 
@@ -403,12 +386,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\NoMovement4.txt\n");
 	fclose(TestdataFile);
 
     m=0;
@@ -430,12 +411,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\NoMovement6.txt\n");
 	fclose(TestdataFile);
 
     m=0;
@@ -458,12 +437,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\HandClose2.txt\n");
 	fclose(TestdataFile);
 
 
@@ -487,12 +464,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\HandClose4.txt\n");
 	fclose(TestdataFile);
 
     m=0;
@@ -514,12 +489,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\HandClose6.txt\n");
 	fclose(TestdataFile);
 
     m=0;
@@ -542,12 +515,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\HandOpen2.txt\n");
 	fclose(TestdataFile);
 
 
@@ -571,12 +542,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\HandOpen4.txt\n");
 	fclose(TestdataFile);
 
     m=0;
@@ -598,12 +567,10 @@ int main( int argc, char **argv )
 		exit(0);
 	}
 	i=0;
-	//printf("address0:%d, data:%f,address1:%d, data:%f\n", &TrainData[0], TrainData[0],&TrainData[1],TrainData[1]);
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
-		//printf("%d: %f\n",i,TrainData[i]);
 		i++;
 	}
-	printf("fscanf complete!\n");
+	printf("load file: data\\test\\HandOpen6.txt\n");
 	fclose(TestdataFile);
 
     m=0;
@@ -617,6 +584,8 @@ int main( int argc, char **argv )
 		total_win_num++;
 	}
 	test_accuracy=((float)num_correct)/total_win_num;
+
+	printf("testing complete stage finished\n\n");
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////   testing phase end    ///////////////////////////////////////////////////////////
 	/////////////////////////////////////////////////////////////////////////////////////////////////////

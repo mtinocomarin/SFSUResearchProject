@@ -1,7 +1,4 @@
-// EMG_PR.cpp : Defines the entry point for the console application.
-//
 
-//#include "stdafx.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -89,7 +86,6 @@ void cov(float *A,float *B,int row,int col)
     float *t_tmp1;
     float sum=0;
 
-    printf("row:%d, col:%d\n",row,col);
     t_tmp1=(float*)malloc(col*row*sizeof(float));
     tmp1=(float*)malloc(row*col*sizeof(float));
     tmp=(float*)malloc(col*sizeof(float));
@@ -97,8 +93,6 @@ void cov(float *A,float *B,int row,int col)
     memset(tmp,0,col*sizeof(float));
     memset(tmp1,0,row*col*sizeof(float));
     memset(t_tmp1,0,row*col*sizeof(float));
-    //printf("tmp:%d, tmp1:%d, t_tmp1:%d\n",&tmp[0],&tmp1[0],&t_tmp1[0]);
-    //printf("cov1\n");
     //calculate mean of each column
     for (i=0; i<col; i++)
     {
@@ -108,7 +102,6 @@ void cov(float *A,float *B,int row,int col)
             sum+=A[j*col+i];
         }
         tmp[i]=sum/row;
-		//printf("%f\n",tmp[i]);
     }
 
     //substract matrix A with mean
@@ -120,15 +113,12 @@ void cov(float *A,float *B,int row,int col)
             //float tmptmp = tmp1[j*n+i];
         }
     }
-    //printf("cov2\n");
+ 
     //multiply tmp1 with transpose of tmp1
     Transpose(tmp1,t_tmp1,row,col);
-    //printf("cov3\n");
+
     mulAB(t_tmp1,tmp1,B,col,row,col);
-    //printf("cov4\n");
     //calculate mean of each element of B
-    //printf("tmp:%d, tmp1:%d, t_tmp1:%d\n",&tmp[0],&tmp1[0],&t_tmp1[0]);
-   // printf("tmp:%d, tmp1:%d, t_tmp1:%d\n",&tmp[col-1],&tmp1[row*col-1],&t_tmp1[row*col-1]);
     for (i=0; i<col; i++)
     {
         for (j=0; j<col; j++)
@@ -139,7 +129,6 @@ void cov(float *A,float *B,int row,int col)
 
     free(t_tmp1);
     free(tmp1);
-    //printf("cov5\n");
     free(tmp);
 
     return;
@@ -222,15 +211,7 @@ void tdfeats(float *DataSet_in,int win_length,int channel, int Nframe, float *Fe
     }
 
     free(mean);
-    /*for(i=0;i<DataSet_Row;i++)
-    {
-        for(j=0;j<channel;j++)
-        {
-            printf("%.4f ",DataSet[i*channel+j]);
-        }
-        printf("\n");
-    }
-    printf("***************************************\n");*/
+
 
     for(SigNum=0;SigNum<Nsig;SigNum++)
     {
@@ -338,7 +319,7 @@ void feature_normalization(float *features, float * xmean, float * xstd,int num)
             sum+=features[m+FEATURE_DIM*j];
         }
         xmean[m]=sum/num;
-	printf("sum[%d]:%f\n",m,sum);
+	
 
 		for(j=0;j<num;j++)
         {

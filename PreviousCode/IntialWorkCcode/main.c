@@ -22,6 +22,8 @@
 #include <assert.h>
 #include <math.h>
 #include "function.h"
+#include "config.h"
+
 
 
 int main( int argc, char **argv )
@@ -63,7 +65,7 @@ int main( int argc, char **argv )
 	printf("Loading training data...\n");
 
 	//class 1, trial 1
-	TraindataFile=fopen("data\\train\\NoMovement1.txt","r");
+	TraindataFile = fopen(TRAIN_FILE_PATH1, "r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class1 trial 1 ... \n");
 		perror("fopen");
@@ -73,9 +75,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++; 
 	}
-
-	printf("Load file: data\\train\\NoMovement1.txt\n");
-	
+	printf("Load file: %s\n", TRAIN_FILE_PATH1);
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -90,7 +90,7 @@ int main( int argc, char **argv )
 	}
 
     //class 1, trial 2
-	TraindataFile=fopen("data\\train\\NoMovement3.txt","r");
+	TraindataFile = fopen(TRAIN_FILE_PATH2, "r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class1 trial 2 ... \n");
 		perror("fopen");
@@ -100,7 +100,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("Load file: data\\train\\NoMovement3.txt\n");
+	printf("Load file: %s\n", TRAIN_FILE_PATH2);
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -115,7 +115,7 @@ int main( int argc, char **argv )
 	}
 
     //class 1, trial 3
-	TraindataFile=fopen("data\\train\\NoMovement5.txt","r");
+	TraindataFile = fopen(TRAIN_FILE_PATH3, "r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class1 trial 3 ... \n");
 		perror("fopen");
@@ -125,7 +125,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("Load file: data\\train\\NoMovement5.txt\n");
+	printf("Load file: %s\n", TRAIN_FILE_PATH3);
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -141,7 +141,7 @@ int main( int argc, char **argv )
 
     class_idx++; //class 2
 	//class 2, trial 1
-	TraindataFile=fopen("data\\train\\HandClose1.txt","r");
+	TraindataFile=fopen(TRAIN_FILE_PATH4,"r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class2 trial 1 ... \n");
 		perror("fopen");
@@ -152,7 +152,7 @@ int main( int argc, char **argv )
 
 		i++;
 	}
-	printf("Load file: data\\train\\HandClose1.txt\n");
+	printf("load file: %s\n", TRAIN_FILE_PATH4);
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -167,7 +167,8 @@ int main( int argc, char **argv )
 	}
 
     //class 1, trial 2
-	TraindataFile=fopen("data\\train\\HandClose3.txt","r");
+	TraindataFile=fopen(TRAIN_FILE_PATH5,"r");
+	
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class2 trial 2 ... \n");
 		perror("fopen");
@@ -177,7 +178,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\train\\HandClose3.txt\n");
+	printf("load file: %s\n", TRAIN_FILE_PATH5);
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -192,7 +193,7 @@ int main( int argc, char **argv )
 	}
 
     //class 2, trial 3
-	TraindataFile=fopen("data\\train\\HandClose5.txt","r");
+	TraindataFile=fopen(TRAIN_FILE_PATH6,"r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class1 trial 3 ... \n");
 		perror("fopen");
@@ -202,7 +203,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\train\\HandClose5.txt\n");
+	printf("load file: %s\n", TRAIN_FILE_PATH6);
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -217,7 +218,7 @@ int main( int argc, char **argv )
 	}
 
 	class_idx++; //class 3
-	TraindataFile=fopen("data\\train\\HandOpen1.txt","r");
+	TraindataFile=fopen(TRAIN_FILE_PATH7,"r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class3 trial 1 ... \n");
 		perror("fopen");
@@ -227,7 +228,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\train\\HandOpen1.txt\n");
+	printf("load file: %s\n", TRAIN_FILE_PATH7);
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -242,7 +243,7 @@ int main( int argc, char **argv )
 	}
 
     //class 3, trial 2
-	TraindataFile=fopen("data\\train\\HandOpen3.txt","r");
+	TraindataFile=fopen(TRAIN_FILE_PATH8,"r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class1 trial 2 ... \n");
 		perror("fopen");
@@ -252,7 +253,7 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\train\\HandOpen3.txt\n");
+	printf("load file: %s\n", TRAIN_FILE_PATH8);
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -267,7 +268,7 @@ int main( int argc, char **argv )
 	}
 
     //class 3, trial 3
-	TraindataFile=fopen("data\\train\\HandOpen5.txt","r");
+	TraindataFile=fopen(TRAIN_FILE_PATH9,"r");
 	if (TraindataFile == NULL) {
 		printf("Unable to open traindata file for class3 trial 3 ... \n");
 		perror("fopen");
@@ -277,10 +278,8 @@ int main( int argc, char **argv )
 	while(fscanf(TraindataFile, "%f", &TrainData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\train\\HandOpen5.txt\n");
-	// Loading training data is done
-	// Print the stage of the program
-	printf("Training data loaded!\n");
+	printf("load file: %s\n", TRAIN_FILE_PATH9);
+	printf("All Training data was loaded!\n");
 	fclose(TraindataFile);
 
 	trial_idx++;
@@ -350,7 +349,8 @@ int main( int argc, char **argv )
 	printf("Loading testing data...\n");
 
     //class 1, trial 1
-	TestdataFile=fopen("data\\test\\NoMovement2.txt","r");
+	
+	TestdataFile=fopen(TEST_FILE_PATH1,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class1 trial 1 ... \n");
 		perror("fopen");
@@ -360,7 +360,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\NoMovement2.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH1);
 	fclose(TestdataFile);
 
 
@@ -378,8 +378,8 @@ int main( int argc, char **argv )
 		total_win_num++;
 	}
 
-	    //class 1, trial 2
-	TestdataFile=fopen("data\\test\\NoMovement4.txt","r");
+	//class 1, trial 2
+	TestdataFile=fopen(TEST_FILE_PATH2,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class1 trial 1 ... \n");
 		perror("fopen");
@@ -389,7 +389,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\NoMovement4.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH2);
 	fclose(TestdataFile);
 
     m=0;
@@ -404,7 +404,7 @@ int main( int argc, char **argv )
 	}
 
 	    //class 1, trial 3
-	TestdataFile=fopen("data\\test\\NoMovement6.txt","r");
+	TestdataFile=fopen(TEST_FILE_PATH3,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class1 trial 1 ... \n");
 		perror("fopen");
@@ -414,7 +414,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\NoMovement6.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH3);
 	fclose(TestdataFile);
 
     m=0;
@@ -430,7 +430,7 @@ int main( int argc, char **argv )
 
 
     //class 2, trial 1
-	TestdataFile=fopen("data\\test\\HandClose2.txt","r");
+	TestdataFile=fopen(TEST_FILE_PATH4,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class2 trial 1 ... \n");
 		perror("fopen");
@@ -440,7 +440,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\HandClose2.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH4);
 	fclose(TestdataFile);
 
 
@@ -457,7 +457,7 @@ int main( int argc, char **argv )
 	}
 
 	    //class 2, trial 2
-	TestdataFile=fopen("data\\test\\HandClose4.txt","r");
+	TestdataFile=fopen(TEST_FILE_PATH5,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class2 trial 2 ... \n");
 		perror("fopen");
@@ -467,7 +467,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\HandClose4.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH5);
 	fclose(TestdataFile);
 
     m=0;
@@ -482,7 +482,7 @@ int main( int argc, char **argv )
 	}
 
 	    //class 2, trial 3
-	TestdataFile=fopen("data\\test\\HandClose6.txt","r");
+	TestdataFile=fopen(TEST_FILE_PATH6,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class2 trial 3 ... \n");
 		perror("fopen");
@@ -492,7 +492,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\HandClose6.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH6);
 	fclose(TestdataFile);
 
     m=0;
@@ -508,7 +508,7 @@ int main( int argc, char **argv )
 
 
     //class 3, trial 1
-	TestdataFile=fopen("data\\test\\HandOpen2.txt","r");
+	TestdataFile=fopen(TEST_FILE_PATH7,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class3 trial 1 ... \n");
 		perror("fopen");
@@ -518,7 +518,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\HandOpen2.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH7);
 	fclose(TestdataFile);
 
 
@@ -535,7 +535,7 @@ int main( int argc, char **argv )
 	}
 
 	    //class 3, trial 2
-	TestdataFile=fopen("data\\test\\HandOpen4.txt","r");
+	TestdataFile=fopen(TEST_FILE_PATH8,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class3 trial 2 ... \n");
 		perror("fopen");
@@ -545,7 +545,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\HandOpen4.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH8);
 	fclose(TestdataFile);
 
     m=0;
@@ -560,7 +560,7 @@ int main( int argc, char **argv )
 	}
 
     //class 3, trial 3
-	TestdataFile=fopen("data\\test\\HandOpen6.txt","r");
+	TestdataFile=fopen(TEST_FILE_PATH9,"r");
 	if (TestdataFile == NULL) {
 		printf("Unable to open testdata file for class3 trial 3 ... \n");
 		perror("fopen");
@@ -570,7 +570,7 @@ int main( int argc, char **argv )
 	while(fscanf(TestdataFile, "%f", &TestData[i])!=EOF){
 		i++;
 	}
-	printf("load file: data\\test\\HandOpen6.txt\n");
+	printf("Load file: %s\n", TEST_FILE_PATH9);
 	fclose(TestdataFile);
 
     m=0;

@@ -1,4 +1,4 @@
-his is an SFSU research project that combines efforts from Dr. Xiaorong Zhang and the Intelligent Computing and Embedded Systems Lab, Dr. Zhuwei Qin and the Mobile and Intelligent Computing Lab, and Dr. David Quintero and the Controls for Assistive and Rehabilitation Robotics Lab. 
+This is an SFSU research project that combines efforts from Dr. Xiaorong Zhang and the Intelligent Computing and Embedded Systems Lab, Dr. Zhuwei Qin and the Mobile and Intelligent Computing Lab, and Dr. David Quintero and the Controls for Assistive and Rehabilitation Robotics Lab. 
 This project overview is building on information on master thesis of Yuriah Lydon (2023), aims to develop a low-cost, assistive robotic exoglove to help post-stroke patients regain independence in their daily lives. The glove integrates multiple control systems to provide a flexible and responsive interface tailored to the needs of the user.
 
 Background and Motivation

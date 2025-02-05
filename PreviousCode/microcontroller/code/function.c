@@ -6,9 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "math.h"
-#include "EMG_PR.h"
-
-
+#include "function.h"
 
 /*  Matrix Multiply
     C=A*B

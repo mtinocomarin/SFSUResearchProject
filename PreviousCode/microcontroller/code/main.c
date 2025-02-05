@@ -23,7 +23,7 @@
 #include <time.h>
 #include <assert.h>
 #include <math.h>
-#include "EMG_PR.h"
+#include "function.h"
 
 
 int main( int argc, char **argv )

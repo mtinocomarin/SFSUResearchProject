@@ -1,7 +1,7 @@
 #pragma once
 
 // pattern recognition parameter definitions
-#define WL  160         //windlow length
+#define WL  160      //windlow length
 #define WINC    20      //window increment
 #define TD_FEATURES 4   //number of features
 #define CHANNEL 3      //number of channels
